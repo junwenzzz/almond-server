@@ -206,7 +206,7 @@ export default class WebFrontend extends events.EventEmitter {
             res.locals.csrfToken = req.csrfToken();
             next();
         });
-        this._app.use('/', (await import('./routes/index')).default);
+        this._app.use('/', (await import('./routes/forge_viewer')).default);
         this._app.use('/apps', (await import('./routes/apps')).default);
         this._app.use('/user', (await import('./routes/user')).default);
         this._app.use('/config', (await import('./routes/config')).default);

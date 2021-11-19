@@ -1,0 +1,13 @@
+#chat_upper_container {
+    float: left;
+    width: 40%;
+    height: 100%;
+}
+
+#forgeViewer {
+    float: right;
+    width: 60%;
+    height: 100%;
+    margin: 0;
+    background-color: #F0F8FF;
+}
