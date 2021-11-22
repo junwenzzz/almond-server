@@ -3,12 +3,13 @@ extends layout
 block scripts
   script(src=Config.BASE_URL + '/javascripts/conversation.js')
   script(src='https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js')
+  script(src=Config.BASE_URL + '/javascripts/forge_viewer.js')
 
 block styles
   link(rel='stylesheet', href=Config.BASE_URL + '/stylesheets/spinner.css')
   link(rel='stylesheet', href=Config.BASE_URL + '/stylesheets/conversation.css')
-  link(rel='stylesheet', href=Config.BASE_URL + '/stylesheets/viewer.css')
   link(rel='stylesheet', href='https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css')
+  link(rel='stylesheet', href=Config.BASE_URL + '/stylesheets/viewer.css')
 
 block page_name
   = _("Chat with Genie")
