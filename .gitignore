@@ -12,3 +12,4 @@ service/platform_config.js
 
 yarn-error.log
 package-lock.json
+*.code-workspace
