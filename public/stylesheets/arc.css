@@ -1,0 +1,26 @@
+svg {
+    border: 1px solid #ccc;
+  }
+  body {
+    font: 10px sans-serif;
+  }
+  circle.node {
+    fill: lightsteelblue;
+    stroke: #555;
+    stroke-width: 0.5px;
+  }
+  circle.leaf {
+    fill: lightsteelblue;
+    stroke: #fff;
+    stroke-width: 0.1px;
+    fill-opacity: 0.4;
+  }
+  path.hull {
+    fill: lightsteelblue;
+    fill-opacity: 0.3;
+  }
+  line.link {
+    stroke: #333;
+    stroke-opacity: 0.5;
+    pointer-events: none;
+  }
