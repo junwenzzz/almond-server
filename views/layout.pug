@@ -39,17 +39,18 @@ html
       div.navbar-collapse.collapse(role="navigation")#page-nav
         include navbar.pug
 
-    if stdlayout
-      div.container#page-body
-        if !index
-          div.row.hidden-xs.hidden-sm
-            h1.col-sm-12#page-title
-              block page_name
-        div.row
-          div.col-sm-12
-            block content
-    else
-      block content
+    block content_container
+      if stdlayout
+        div.container#page-body
+          if !index
+            div.row.hidden-xs.hidden-sm
+              h1.col-sm-12#page-title
+                block page_name
+          div.row
+            div.col-sm-12
+              block content
+      else
+        block content
 
     if includefooter
       footer.page-footer.hidden-xs.hidden-sm
