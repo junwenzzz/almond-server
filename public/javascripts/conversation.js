@@ -440,7 +440,7 @@ $(() => {
     });
 
     $('#record-button').click(() => {
-        $('#chat').tmpty();
+        $('#chat').empty();
     });
 
     $('#input-form').on('keydown', (event) => { // button is pressed
