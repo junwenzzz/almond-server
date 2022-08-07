@@ -127,7 +127,8 @@ $(() => {
     function almondMessage(icon) {
         var msg = $('<span>').addClass('message-container from-almond');
         icon = icon || 'org.thingpedia.builtin.thingengine.builtin';
-        var src = thingpediaUrl + '/api/v3/devices/icon/' + icon;
+        // var src = thingpediaUrl + '/api/v3/devices/icon/' + icon;
+        var src = "https://img.icons8.com/fluency/240/000000/autodesk--v2.png" // add icon
         msg.append($('<img>').addClass('icon').attr('src', src));
         container.append(msg);
 
