@@ -284,3 +284,8 @@ $(() => {
     }
 
 });
+
+// clear history record
+$(document).ready(function () {
+    $("#chat").empty();
+});
