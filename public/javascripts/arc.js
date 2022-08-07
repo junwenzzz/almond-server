@@ -282,10 +282,4 @@ $(() => {
                 .attr("y", function(d) { return d.y-8; });
     });
     }
-
-});
-
-// clear history record
-$(document).ready(function () {
-    $("#chat").empty();
 });

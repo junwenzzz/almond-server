@@ -439,6 +439,10 @@ $(() => {
         handleSpecial('nevermind', "Cancel.");
     });
 
+    $('#record-button').click(() => {
+        $('#chat').tmpty();
+    });
+
     $('#input-form').on('keydown', (event) => { // button is pressed
         if (event.keyCode === 38) { // Up
             // removes last item from array pastCommandsUp, displays it as currCommand, adds current input text to pastCommandsDown
