@@ -334,9 +334,15 @@ $(() => {
         lastMessageId = parsed.id;
 
         switch (parsed.type) {
+            case 'new-program':
+                if (parsed.type == "Arc"){
+                    console.log(parsed.code);
+                }
+                textMessage(parsed.code, parsed.icon);
+                break;
             case 'text':
             case 'result':
-                // textMessage(parsed.text, parsed.icon); // testing
+                // textMessage(parsed.text, parsed.icon);
                 currentGrid = null;
                 break;
 
@@ -389,16 +395,19 @@ $(() => {
         }
 
         updateSpinner(true);
+        console.log("handleCommand ",text);
         ws.send(JSON.stringify({ type: 'command', text: text }));
     }
 
     function handleParsedCommand(json, title) {
         updateSpinner(true);
+        console.log("handleParsedCommand ",text);
         ws.send(JSON.stringify({ type: 'parsed', json: json, title: title }));
     }
 
     function handleThingTalk(tt) {
         updateSpinner(true);
+        console.log("handleThingTalk ",tt); // testing
         ws.send(JSON.stringify({ type: 'tt', code: tt }));
     }
 
