@@ -339,6 +339,7 @@ $(() => {
                     console.log(parsed.code);
                 }
                 textMessage(parsed.code, parsed.icon);
+                ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
                 break;
             case 'text':
             case 'result':
@@ -371,7 +372,10 @@ $(() => {
             case 'command':
                 $('#input').val('');
                 collapseButtons();
-                appendUserMessage(parsed.command);
+                if (parsed.command != "thank you"){
+                    appendUserMessage(parsed.command);
+                }
+                // appendUserMessage(parsed.command);
                 break;
         }
     }
@@ -397,7 +401,6 @@ $(() => {
         updateSpinner(true);
         console.log("handleCommand ",text);
         ws.send(JSON.stringify({ type: 'command', text: text }));
-        ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
     }
 
     function handleParsedCommand(json, title) {
