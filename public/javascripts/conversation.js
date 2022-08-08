@@ -336,8 +336,7 @@ $(() => {
         switch (parsed.type) {
             case 'text':
             case 'result':
-                // FIXME: support more type of results
-                textMessage(parsed.text, parsed.icon);
+                // textMessage(parsed.text, parsed.icon); // testing
                 currentGrid = null;
                 break;
 
