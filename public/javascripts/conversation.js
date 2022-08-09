@@ -649,7 +649,6 @@ $(() => {
                 data.links[i].source = id2node(data.links[i].source, data.nodes);
                 data.links[i].target = id2node(data.links[i].target, data.nodes);
             }
-            
         }
         console.log("data after: ",data);
         return data;
