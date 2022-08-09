@@ -338,7 +338,11 @@ $(() => {
             case 'new-program':
                 if (parsed.type == "Arc"){
                     console.log(parsed.code);
-                    if (parsed.code== "@arc.layout() filter count(social) == 1 && count(visitor) == 1 && count(working) == 1;") init(load_data(json1));
+                    if (parsed.code == "@arc.layout() filter count(social) == 1 && count(visitor) == 1 && count(working) == 1;") {
+                        console.log("d3: ",parsed.code);
+                        init(load_data(json1));
+                    }
+                        
                 }
                 textMessage(parsed.code, parsed.icon);
                 ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
