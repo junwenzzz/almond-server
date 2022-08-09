@@ -537,12 +537,6 @@ $(() => {
         return u<v ? u+"|"+v : v+"|"+u;
     }
 
-    function linkid(l) {
-        var u = nodeid(l.source),
-            v = nodeid(l.target);
-        return u<v ? u+"|"+v : v+"|"+u;
-    }
-
     // constructs the network to visualize
     function network(data, prev) {
         var gm = {},    // group map
@@ -649,10 +643,10 @@ $(() => {
 
     function load_data(data){
         for (var i=0; i<data.links.length; ++i) {
-        var o = data.links[i];
-        // replace source_index by the node object
-        o.source = id2node(o.source, data.nodes);
-        o.target = id2node(o.target, data.nodes);
+            var o = data.links[i];
+            // replace source_index by the node object
+            data.links[i].source = id2node(data.links[i].source, data.nodes);
+            data.links[i].target = id2node(data.links[i].target, data.nodes);
         }
         return data;
     }
