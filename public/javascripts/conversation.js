@@ -457,7 +457,6 @@ $(() => {
 
     $('#record-button').click(() => {
         $('#chat').empty();
-        update();
     });
 
     $('#input-form').on('keydown', (event) => { // button is pressed
@@ -654,7 +653,7 @@ $(() => {
 
     function load_data(data){
     for (var i=0; i<data.links.length; ++i) {
-    o = data.links[i];
+    var o = data.links[i];
     // replace source_index by the node object
     o.source = id2node(o.source, data.nodes);
     o.target = id2node(o.target, data.nodes);
