@@ -337,13 +337,13 @@ $(() => {
         switch (parsed.type) {
             case 'new-program':
                 console.log("TK: ", parsed.code);
+                textMessage("ThingTalk executable command: "+parsed.code, parsed.icon);
+                ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
                 if (parsed.code == '@arc.layout() filter count(social) == 1 && count(visitor) == 1 && count(working) == 1;') init(load_data(json1));
                 else if(parsed.code =='@arc.nearBy() filter space1 == "social"^^arc:zone("social zone") && zone1 == "working"^^arc:zone("working zone");') init(load_data(json2));
                 else if(parsed.code =='@arc.working() filter count(desk) == 3 && count(meeting) == 4 && count(office) == 5;') init(load_data(json3));
                 else if(parsed.code =='@arc.connect() filter space1 == "office"^^arc:space("offices") && space2 == "window"^^arc:space("windows");') init(load_data(json4));
                 else if(parsed.code =='@arc.desk() filter in_zone == "working"^^arc:zone("working zone") && location == "center"^^arc:location("center");') init(load_data(json5));
-                textMessage("ThingTalk executable command: "+parsed.code, parsed.icon);
-                ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
                 break;
             case 'text':
             case 'result':
