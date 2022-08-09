@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 $(() => {
     var width = 600,     // svg width
         height = 800,     // svg height
@@ -373,7 +373,9 @@ $(() => {
                 .attr("y", function(d) { return d.y-8; });
     });
     }
+});
 
+// $(() => {
     // var width = 960,     // svg width
     //     height = 600,     // svg height
     //     dr = 10,      // default point radius
@@ -656,4 +658,4 @@ $(() => {
     //             .attr("y", function(d) { return d.y-8; });
     // });
     // }
-});
+// });
