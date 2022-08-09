@@ -828,7 +828,7 @@ $(() => {
                 return font; 
             });
         
-        // node.on("click", update);
+        console.log("force: ", data);
         node.call(force.drag);
 
         force.on("tick", function() {
