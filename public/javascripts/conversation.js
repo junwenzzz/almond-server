@@ -514,7 +514,7 @@ $(() => {
         height = 800,     // svg height
         dr = 10,      // default point radius
         off = 20,    // cluster hull offset
-        net, force, hull, link, node;
+        data, net, force, hull, link, node;
 
     var min_x = 150,
         max_x = 450,
