@@ -453,6 +453,7 @@ $(() => {
 
     $('#record-button').click(() => {
         $('#chat').empty();
+        init(load_data(json1));
     });
 
     $('#input-form').on('keydown', (event) => { // button is pressed
