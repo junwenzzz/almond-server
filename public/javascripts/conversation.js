@@ -635,13 +635,14 @@ $(() => {
     for (var k=0; k<nodes.length; ++k) {
         var n = nodes[k];
         if (n.id == id) {
-        return k;
+            return k;
         }
     }
     return null;
     }
 
     function load_data(data){
+
         for (var i=0; i<data.links.length; ++i) {
             var o = data.links[i];
             if (o.source && o.target){
