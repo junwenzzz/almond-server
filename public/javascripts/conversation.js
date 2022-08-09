@@ -815,10 +815,12 @@ $(() => {
             .text(function(d) {return d.group == "na" || d.size >0 ? d.name:""; })
             .style("text-anchor", "middle")
             .style("fill", function(d){
+                var color;
                 if(d.name == "Window"){
-                return "#F4B400";
+                    color = "#F4B400";
                 }
-                return color = fill(d.name);
+                color = fill(d.name)
+                return color;
             })
             .style("font-family", "Arial")
             .style("font-size", function(d) {
