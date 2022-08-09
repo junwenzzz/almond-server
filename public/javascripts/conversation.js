@@ -638,21 +638,17 @@ $(() => {
             return k;
         }
     }
-    return null;
+        return null;
     }
 
     function load_data(data){
-
+        console.log("data before: ",data);
         for (var i=0; i<data.links.length; ++i) {
-            var o = data.links[i];
-            if (o.source && o.target){
-                // replace source_index by the node object
-                data.links[i].source = id2node(data.links[i].source, data.nodes);
-                data.links[i].target = id2node(data.links[i].target, data.nodes);
-            }else{
-                continue;
-            }
+            // replace source_index by the node object
+            data.links[i].source = id2node(data.links[i].source, data.nodes);
+            data.links[i].target = id2node(data.links[i].target, data.nodes);
         }
+        console.log("data after: ",data);
         return data;
     }
     // --------------------------------------------------------
