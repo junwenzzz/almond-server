@@ -1,4 +1,6 @@
 "use strict";
+import init from 'arc.js';
+
 $(() => {
     var baseUrl = document.body.dataset.baseUrl;
     var thingpediaUrl = document.body.dataset.thingpediaUrl;
