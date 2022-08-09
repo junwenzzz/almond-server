@@ -342,7 +342,6 @@ $(() => {
                 else if(parsed.code =='@arc.working() filter count(desk) == 3 && count(meeting) == 4 && count(office) == 5;') init(load_data(json3));
                 else if(parsed.code =='@arc.connect() filter space1 == "office"^^arc:space("offices") && space2 == "window"^^arc:space("windows");') init(load_data(json4));
                 else if(parsed.code =='@arc.desk() filter in_zone == "working"^^arc:zone("working zone") && location == "center"^^arc:location("center");') init(load_data(json5));
-
                 textMessage("ThingTalk executable command: "+parsed.code, parsed.icon);
                 ws.send(JSON.stringify({ type: 'command', text: "thank you" }));
                 break;
@@ -457,6 +456,7 @@ $(() => {
 
     $('#record-button').click(() => {
         $('#chat').empty();
+        init(load_data(json0));
     });
 
     $('#input-form').on('keydown', (event) => { // button is pressed
