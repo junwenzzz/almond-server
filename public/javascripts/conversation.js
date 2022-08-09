@@ -383,6 +383,12 @@ $(() => {
                 break;
         }
         
+        var json1 = {"nodes":[{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[]};
+        var json2 = {"nodes":[{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"}]};
+        var json3 = {"nodes":[{"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone"}]};
+        var json4 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
+        var json5 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone_center"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
+
     }
 
     function handleSlashR(line) {
@@ -511,178 +517,7 @@ $(() => {
         });
     });
 
-    (function(){
-        var width = 600,     // svg width
-            height = 800,     // svg height
-            dr = 10,      // default point radius
-            off = 20,    // cluster hull offset
-            net, force, hull, link, node;
-
-        var min_x = 150,
-            max_x = 450,
-            min_y = 10,
-            max_y = 650;
-
-        var curve = d3.svg.line()
-            .interpolate("cardinal-closed")
-            .tension(.85);
-
-        var fill = d3.scale.category10();
-
-        function noop() { return false; }
-
-        function nodeid(n) {
-        return n.size ? "_g_"+n.group : n.name;
-        }
-
-        function linkid(l) {
-        var u = nodeid(l.source),
-            v = nodeid(l.target);
-        return u<v ? u+"|"+v : v+"|"+u;
-        }
-
-        function linkid(l) {
-        var u = nodeid(l.source),
-            v = nodeid(l.target);
-        return u<v ? u+"|"+v : v+"|"+u;
-        }
-
-        // constructs the network to visualize
-        function network(data, prev) {
-        var gm = {},    // group map
-            nm = {},    // node map
-            lm = {},    // relationship map
-            nodes = [], // output nodes
-            links = []; // output links
-
-        // determine nodes
-        for (var k=0; k<data.nodes.length; ++k) {
-            var n = data.nodes[k],
-                i = n.group,
-                l = gm[i] || (gm[i]={group:i, size:0, nodes:[]});
-
-            if (n.size) {
-            // the ungrouped node should be directly visible
-            nodes.push(n);
-
-            } else {
-            // the node is part of a collapsed cluster
-
-            if (l.size == 0) {
-                // if new cluster, add to set and position at centroid of leaf nodes
-                nodes.push(l);
-            }
-            l.nodes.push(n);
-            }
-        // always count group size as we also use it to tweak the force graph strengths/distances
-            // l.size += 1;
-            n.group_data = l;
-        }
-
-        // determine links
-        for (k=0; k<data.links.length; ++k) {
-            var e = data.links[k],
-                u = e.source,
-                v = e.target,
-                t = e.type;
-                
-            var i = (u<v ? u+"|"+v : v+"|"+u),
-                l = lm[i] || (lm[i] = {source:u, target:v, type:t});
-        }
-        for (i in lm) { links.push(lm[i]); }
-
-        return {nodes: nodes, links: links};
-        }
-        function min_max(v, max_v, min_v){
-        if (v>max_v) return max_v;
-        else if (v<min_v) return min_v;
-        else return v;
-        }
-
-        function boundary(x=0,y=0){
-        if (x == 0){
-            return min_max(y, max_y, min_y);
-        } else if(y == 0){
-            return min_max(x, max_x, min_x);
-        } else{
-            return 0;
-        }
-        }
-
-        function convexHulls(nodes, d_offset) {
-        var hulls = {};
-
-        // create point sets
-        for (var k=0; k<nodes.length; ++k) {
-            var n = nodes[k];
-            if (n.group == "na") continue;
-            var i = n.group,
-            offset = d_offset,
-            l = hulls[i] || (hulls[i] = []);
-            if(n.size == 0){
-            offset = d_offset*4;
-            }
-            l.push([n.x-offset, n.y-offset]);
-            l.push([n.x-offset, n.y+offset]);
-            l.push([n.x+offset, n.y-offset]);
-            l.push([n.x+offset, n.y+offset]);
-        }
-
-        // create convex hulls
-        var hullset = [];
-        for (i in hulls) {
-            hullset.push({group: i, path: d3.geom.hull(hulls[i])});
-        }
-
-        return hullset;
-        }
-
-        function drawCluster(d) {
-        return curve(d.path); // 0.8
-        }
-
-        function id2node(id, nodes){
-        for (var k=0; k<nodes.length; ++k) {
-            var n = nodes[k];
-            if (n.id == id) {
-            return k;
-            }
-        }
-        return null;
-        }
-
-        function load_data(data){
-        for (var i=0; i<data.links.length; ++i) {
-        var o = data.links[i];
-        // replace source_index by the node object
-        o.source = id2node(o.source, data.nodes);
-        o.target = id2node(o.target, data.nodes);
-        }
-        return data;
-        }
-        // --------------------------------------------------------
-
-        // var body = d3.select("body");
-        // var vis = body.append("svg")
-        var vis = d3.select("#bubbleDiagram").append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-        var json0 = {"nodes":[],"links":[]};
-        var json1 = {"nodes":[{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[]};
-        var json2 = {"nodes":[{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"}]};
-        var json3 = {"nodes":[{"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone"}]};
-        var json4 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
-        var json5 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone_center"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
-
-        init(load_data(json0));
-
-        vis.attr("opacity", 1e-6)
-        .transition()
-            .duration(1000)
-            .attr("opacity", 1);
-
-        function init(data) {
+    function init(data) {
             if (force) force.stop();
 
             net = network(data, net);
@@ -861,6 +696,4 @@ $(() => {
                         .attr("y", function(d) { return d.y-8; });
             });
         }
-    })()
-
 });

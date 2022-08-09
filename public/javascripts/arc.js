@@ -140,13 +140,13 @@ $(() => {
     }
 
     function load_data(data){
-    for (var i=0; i<data.links.length; ++i) {
-    o = data.links[i];
-    // replace source_index by the node object
-    o.source = id2node(o.source, data.nodes);
-    o.target = id2node(o.target, data.nodes);
-    }
-    return data;
+        for (var i=0; i<data.links.length; ++i) {
+        var o = data.links[i];
+        // replace source_index by the node object
+        o.source = id2node(o.source, data.nodes);
+        o.target = id2node(o.target, data.nodes);
+        }
+        return data;
     }
     // --------------------------------------------------------
 
@@ -163,216 +163,191 @@ $(() => {
     var json4 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
     var json5 = {"nodes":[{"id":"window1","name":"Window","group":"na","size":2}, {"id":"window2","name":"Window","group":"na","size":2}, {"id":"window3","name":"Window","group":"na","size":2}, {"id":"window4","name":"Window","group":"na","size":2}, {"id":"window5","name":"Window","group":"na","size":2}, {"id":"office1","name":"Office","group":"working","size":10},{"id":"office2","name":"Office","group":"working","size":10},{"id":"office3","name":"Office","group":"working","size":10},{"id":"office4","name":"Office","group":"working","size":10},{"id":"office5","name":"Office","group":"working","size":10},{"id":"desk1","name":"Desk","group":"working","size":15},{"id":"desk2","name":"Desk","group":"working","size":15},{"id":"desk3","name":"Desk","group":"working","size":15},{"id":"meet1","name":"Meeting","group":"working","size":20},{"id":"meet2","name":"Meeting","group":"working","size":20},{"id":"meet3","name":"Meeting","group":"working","size":20},{"id":"meet4","name":"Meeting","group":"working","size":20},{"id":"working","name":"Working Zone","group":"working"}, {"id":"visitor","name":"Visitor Zone","group":"visitor"}, {"id":"social","name":"Social Zone","group":"social"}],"links":[{"source":"social", "target":"visitor", "value":1, "type":"near"},{"source":"office1", "target":"working", "value":1, "type":"in_zone"},{"source":"office2", "target":"working", "value":1, "type":"in_zone"},{"source":"office3", "target":"working", "value":1, "type":"in_zone"},{"source":"office4", "target":"working", "value":1, "type":"in_zone"},{"source":"office5", "target":"working", "value":1, "type":"in_zone"}, {"source":"meet1", "target":"working", "value":1, "type":"in_zone"},{"source":"meet2", "target":"working", "value":1, "type":"in_zone"},{"source":"meet3", "target":"working", "value":1, "type":"in_zone"},{"source":"meet4", "target":"working", "value":1, "type":"in_zone"},{"source":"desk1", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk2", "target":"working", "value":1, "type":"in_zone_center"},{"source":"desk3", "target":"working", "value":1, "type":"in_zone_center"},{"source":"office1", "target":"window1", "value":1, "type":"nearWin"},{"source":"office2", "target":"window2", "value":1, "type":"nearWin"},{"source":"office3", "target":"window3", "value":1, "type":"nearWin"},{"source":"office4", "target":"window4", "value":1, "type":"nearWin"},{"source":"office5", "target":"window5", "value":1, "type":"nearWin"}]};
 
-    init(load_data(json0));
+    init(json0);
 
     vis.attr("opacity", 1e-6)
     .transition()
         .duration(1000)
         .attr("opacity", 1);
 
-    var bubble_flag = 1;
+    function init(json) {
+        data = load_data(json);
+        if (force) force.stop();
 
-    // function update(d){
-    // switch (bubble_flag){
-    //     case 1:
-    //     init(load_data(json1));
-    //     break;
-    //     case 2:
-    //     init(load_data(json2));
-    //     break;
-    //     case 3:
-    //     init(load_data(json3));
-    //     break;
-    //     case 4:
-    //     init(load_data(json4));
-    //     break;
-    //     case 5:
-    //     init(load_data(json5));
-    //     break;
-    //     default:
-    //     return;
-    // }
-    // bubble_flag = bubble_flag + 1;
-    // console.log(bubble_flag);
-    // }
+        net = network(data, net);
 
-    function init(data) {
-    if (force) force.stop();
-
-    net = network(data, net);
-
-    force = d3.layout.force()
-        .nodes(net.nodes)
-        .links(net.links)
-        .size([width, height])
-        .linkDistance(function(l, i) {
-        var n1 = l.source, n2 = l.target; // parameter in links
-            // TBD: design algorithm for link distance
-        var length = 200;
-        if (l.type == "in_zone"){
-            length = 10;
-        }else if (l.type == "near"){
-            length = 200;
-        } else if(l.type== "nearWin"){
-            length = 50;
-        } else if(l.type== "in_zone_center"){
-            length = 15;
-        }
-        return length;
-        })
-        .linkStrength(function(l, i) {
-        var strength = 1;
-        if (l.type == "in_zone"){
-            strength = 0.2;
-        } else if (l.type == "near"){
-            strength = 1;
-        } else if(l.type== "nearWin"){
-            strength = 1;
-        } else if(l.type== "in_zone_center"){
-            strength = 0.7;
-        }
-        return strength;
-        })
-        .gravity(0.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
-        .charge(-400)    // ... charge is important to turn single-linked groups to the outside
-        .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
-        .start();
-    
-    vis.selectAll("text").remove();
-
-    vis.selectAll("path.hull").remove();
-    hull = vis.selectAll("path.hull").data(convexHulls(net.nodes, off)).enter().append("g");
-    var group = hull.append("path")
-        .attr("class", "hull")
-        .attr("d", drawCluster)
-        .style("fill", function(d) { return fill(d.group); });
-
-    var group_label = hull.append("text")
-        .text(function(d) { return d.group+" zone"; })
-        .style("text-anchor", "middle")
-        .style("fill", function(d) { return fill(d.group); })
-        .style("font-family", "Arial")
-        .style("font-size", 25);
-    
-    vis.selectAll("line.link").remove();
-    link = vis.selectAll("line.link").data(net.links, linkid).enter().append("g");
-    
-    var line = link.append("line")
-        .attr("class", "link")
-        .attr("x1", function(d) { return boundary(d.source.x, 0); })
-        .attr("y1", function(d) { return boundary(0, d.source.y); })
-        .attr("x2", function(d) { return boundary(d.target.x, 0); })
-        .attr("y2", function(d) { return boundary(0, d.target.y); })
-        .style("stroke-width", function(d) {
-            var s_width = 2;
-            if (d.type == "in_zone" || d.type == "in_zone_center"){
-            s_width = 0;
+        force = d3.layout.force()
+            .nodes(net.nodes)
+            .links(net.links)
+            .size([width, height])
+            .linkDistance(function(l, i) {
+            var n1 = l.source, n2 = l.target; // parameter in links
+                // TBD: design algorithm for link distance
+            var length = 200;
+            if (l.type == "in_zone"){
+                length = 10;
+            }else if (l.type == "near"){
+                length = 200;
+            } else if(l.type== "nearWin"){
+                length = 50;
+            } else if(l.type== "in_zone_center"){
+                length = 15;
             }
-            return s_width;
-        })
-    
-    var line_label = link.append("text")
-        .text(function(d) {
-            var text = d.type;
-            if(d.type == "nearWin") {
-            text = "near";
-            }else if(d.type == "in_zone" || d.type == "in_zone_center") {
-            text = "";
+            return length;
+            })
+            .linkStrength(function(l, i) {
+            var strength = 1;
+            if (l.type == "in_zone"){
+                strength = 0.2;
+            } else if (l.type == "near"){
+                strength = 1;
+            } else if(l.type== "nearWin"){
+                strength = 1;
+            } else if(l.type== "in_zone_center"){
+                strength = 0.7;
             }
-            return text;
-        })
-        .style("text-anchor", "middle")
-        .style("fill", "#3cba54")
-        .style("font-family", "Arial")
-        .style("font-size", function(d) {
-            var font = 20;
-            if(d.type == "nearWin"){
-            font = 10;
-            }
-            return font; 
-        });
-    
-    vis.selectAll("circle.node").remove();
-    node = vis.selectAll("circle.node").data(net.nodes, nodeid).enter().append("g");
-    // node.exit().remove();
-    var circle = node.append("circle")
-        // if (d.size) -- d.size > 0 when d is a group node.
-        .attr("class", function(d) { return "node" + (d.group == "na" ?"":" leaf"); })
-        .attr("r", function(d) {
-            var r = dr;
-            if(d.name == "Window"){
-            r = r*0.6;
-            } else if(d.name == "Office"){
-            r = r*1.5;
-            } else if(d.name == "Meeting"){
-            r = r*2;
-            }  else if(d.name == "Desk"){
-            r = r*2;
-            }
-            return r; 
-        })
-        .attr("cx", function(d) { 
-            return boundary(d.x, 0); })
-        .attr("cy", function(d) { 
-            return boundary(0, d.y); })
-        .style("fill", function(d) {
-            var color;
-            if (d.group == "na" || d.size >0){
-            if(d.name == "Window"){
-                return "#F4B400";
-            }
-            color = fill(d.name);
-            } else{
-            color = fill(d.group);
-            }
-            return color; 
-        });
-    
-    
-    var node_label = node.append("svg:text")
-        .text(function(d) {return d.group == "na" || d.size >0 ? d.name:""; })
-        .style("text-anchor", "middle")
-        .style("fill", function(d){
-            if(d.name == "Window"){
-            return "#F4B400";
-            }
-            return color = fill(d.name);
-        })
-        .style("font-family", "Arial")
-        .style("font-size", function(d) {
-            var font = 15;
-            if(d.name == "Window"){
-            font = 10;
-            }
-            return font; 
-        });
-    
-    // node.on("click", update);
-    node.call(force.drag);
-
-    force.on("tick", function() {
-        group.data(convexHulls(net.nodes, off))
-            .attr("d", drawCluster);
-
-        group_label.data(convexHulls(net.nodes, off))
-                .attr("x", function(d) { return d.path[0][0]; })
-                .attr("y", function(d) { return d.path[0][1]; });
+            return strength;
+            })
+            .gravity(0.05)   // gravity+charge tweaked to ensure good 'grouped' view (e.g. green group not smack between blue&orange, ...
+            .charge(-400)    // ... charge is important to turn single-linked groups to the outside
+            .friction(0.5)   // friction adjusted to get dampened display: less bouncy bouncy ball [Swedish Chef, anyone?]
+            .start();
         
-        line.attr("x1", function(d) { return boundary(d.source.x, 0); })
+        vis.selectAll("text").remove();
+
+        vis.selectAll("path.hull").remove();
+        hull = vis.selectAll("path.hull").data(convexHulls(net.nodes, off)).enter().append("g");
+        var group = hull.append("path")
+            .attr("class", "hull")
+            .attr("d", drawCluster)
+            .style("fill", function(d) { return fill(d.group); });
+
+        var group_label = hull.append("text")
+            .text(function(d) { return d.group+" zone"; })
+            .style("text-anchor", "middle")
+            .style("fill", function(d) { return fill(d.group); })
+            .style("font-family", "Arial")
+            .style("font-size", 25);
+        
+        vis.selectAll("line.link").remove();
+        link = vis.selectAll("line.link").data(net.links, linkid).enter().append("g");
+        
+        var line = link.append("line")
+            .attr("class", "link")
+            .attr("x1", function(d) { return boundary(d.source.x, 0); })
             .attr("y1", function(d) { return boundary(0, d.source.y); })
             .attr("x2", function(d) { return boundary(d.target.x, 0); })
-            .attr("y2", function(d) { return boundary(0, d.target.y); });
-
-        line_label.attr("x", function(d) { return ((d.source.x + d.target.x)/2); })
-                .attr("y", function(d) { return ((d.source.y + d.target.y)/2); });
-
-        circle.attr("cx", function(d) { return boundary(d.x, 0); })
-            .attr("cy", function(d) { return boundary(0, d.y); });
+            .attr("y2", function(d) { return boundary(0, d.target.y); })
+            .style("stroke-width", function(d) {
+                var s_width = 2;
+                if (d.type == "in_zone" || d.type == "in_zone_center"){
+                s_width = 0;
+                }
+                return s_width;
+            })
         
-        node_label.attr("x", function(d) { return d.x; })
-                .attr("y", function(d) { return d.y-8; });
-    });
-    }
+        var line_label = link.append("text")
+            .text(function(d) {
+                var text = d.type;
+                if(d.type == "nearWin") {
+                text = "near";
+                }else if(d.type == "in_zone" || d.type == "in_zone_center") {
+                text = "";
+                }
+                return text;
+            })
+            .style("text-anchor", "middle")
+            .style("fill", "#3cba54")
+            .style("font-family", "Arial")
+            .style("font-size", function(d) {
+                var font = 20;
+                if(d.type == "nearWin"){
+                font = 10;
+                }
+                return font; 
+            });
+        
+        vis.selectAll("circle.node").remove();
+        node = vis.selectAll("circle.node").data(net.nodes, nodeid).enter().append("g");
+        // node.exit().remove();
+        var circle = node.append("circle")
+            // if (d.size) -- d.size > 0 when d is a group node.
+            .attr("class", function(d) { return "node" + (d.group == "na" ?"":" leaf"); })
+            .attr("r", function(d) {
+                var r = dr;
+                if(d.name == "Window"){
+                r = r*0.6;
+                } else if(d.name == "Office"){
+                r = r*1.5;
+                } else if(d.name == "Meeting"){
+                r = r*2;
+                }  else if(d.name == "Desk"){
+                r = r*2;
+                }
+                return r; 
+            })
+            .attr("cx", function(d) { 
+                return boundary(d.x, 0); })
+            .attr("cy", function(d) { 
+                return boundary(0, d.y); })
+            .style("fill", function(d) {
+                var color;
+                if (d.group == "na" || d.size >0){
+                if(d.name == "Window"){
+                    return "#F4B400";
+                }
+                color = fill(d.name);
+                } else{
+                color = fill(d.group);
+                }
+                return color; 
+            });
+        
+        
+        var node_label = node.append("svg:text")
+            .text(function(d) {return d.group == "na" || d.size >0 ? d.name:""; })
+            .style("text-anchor", "middle")
+            .style("fill", function(d){
+                if(d.name == "Window"){
+                return "#F4B400";
+                }
+                return color = fill(d.name);
+            })
+            .style("font-family", "Arial")
+            .style("font-size", function(d) {
+                var font = 15;
+                if(d.name == "Window"){
+                font = 10;
+                }
+                return font; 
+            });
+        
+        // node.on("click", update);
+        node.call(force.drag);
+
+        force.on("tick", function() {
+            group.data(convexHulls(net.nodes, off))
+                .attr("d", drawCluster);
+
+            group_label.data(convexHulls(net.nodes, off))
+                    .attr("x", function(d) { return d.path[0][0]; })
+                    .attr("y", function(d) { return d.path[0][1]; });
+            
+            line.attr("x1", function(d) { return boundary(d.source.x, 0); })
+                .attr("y1", function(d) { return boundary(0, d.source.y); })
+                .attr("x2", function(d) { return boundary(d.target.x, 0); })
+                .attr("y2", function(d) { return boundary(0, d.target.y); });
+
+            line_label.attr("x", function(d) { return ((d.source.x + d.target.x)/2); })
+                    .attr("y", function(d) { return ((d.source.y + d.target.y)/2); });
+
+            circle.attr("cx", function(d) { return boundary(d.x, 0); })
+                .attr("cy", function(d) { return boundary(0, d.y); });
+            
+            node_label.attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y-8; });
+        });
+        }
 });
 
 // $(() => {
