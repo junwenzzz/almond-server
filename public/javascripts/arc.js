@@ -4,7 +4,7 @@ var width = 600,     // svg width
     height = 800,     // svg height
     dr = 10,      // default point radius
     off = 20,    // cluster hull offset
-    data, net, force, hull, link, node;
+    net, force, hull, link, node;
 
 var min_x = 150,
     max_x = 450,
@@ -19,114 +19,112 @@ var fill = d3.scale.category10();
 
 function noop() { return false; }
 
-function nodeid(n) {
-return n.size ? "_g_"+n.group : n.name;
+function nodeid(n) { return n.size ? "_g_"+n.group : n.name; }
+
+function linkid(l) {
+    var u = nodeid(l.source),
+        v = nodeid(l.target);
+    return u<v ? u+"|"+v : v+"|"+u;
 }
 
 function linkid(l) {
-var u = nodeid(l.source),
-    v = nodeid(l.target);
-return u<v ? u+"|"+v : v+"|"+u;
-}
-
-function linkid(l) {
-var u = nodeid(l.source),
-    v = nodeid(l.target);
-return u<v ? u+"|"+v : v+"|"+u;
+    var u = nodeid(l.source),
+        v = nodeid(l.target);
+    return u<v ? u+"|"+v : v+"|"+u;
 }
 
 // constructs the network to visualize
 function network(data, prev) {
-var gm = {},    // group map
-    nm = {},    // node map
-    lm = {},    // relationship map
-    nodes = [], // output nodes
-    links = []; // output links
+    var gm = {},    // group map
+        nm = {},    // node map
+        lm = {},    // relationship map
+        nodes = [], // output nodes
+        links = []; // output links
 
-// determine nodes
-for (var k=0; k<data.nodes.length; ++k) {
-    var n = data.nodes[k],
-        i = n.group,
-        l = gm[i] || (gm[i]={group:i, size:0, nodes:[]});
+    // determine nodes
+    for (var k=0; k<data.nodes.length; ++k) {
+        var n = data.nodes[k],
+            i = n.group,
+            l = gm[i] || (gm[i]={group:i, size:0, nodes:[]});
 
-    if (n.size) {
-    // the ungrouped node should be directly visible
-    nodes.push(n);
+        if (n.size) {
+        // the ungrouped node should be directly visible
+        nodes.push(n);
 
-    } else {
-    // the node is part of a collapsed cluster
+        } else {
+        // the node is part of a collapsed cluster
 
-    if (l.size == 0) {
-        // if new cluster, add to set and position at centroid of leaf nodes
-        nodes.push(l);
+        if (l.size == 0) {
+            // if new cluster, add to set and position at centroid of leaf nodes
+            nodes.push(l);
+        }
+        l.nodes.push(n);
+        }
+    // always count group size as we also use it to tweak the force graph strengths/distances
+        // l.size += 1;
+        n.group_data = l;
     }
-    l.nodes.push(n);
+
+    // determine links
+    for (k=0; k<data.links.length; ++k) {
+        var e = data.links[k],
+            u = e.source,
+            v = e.target,
+            t = e.type;
+            
+        var i = (u<v ? u+"|"+v : v+"|"+u),
+            l = lm[i] || (lm[i] = {source:u, target:v, type:t});
     }
-// always count group size as we also use it to tweak the force graph strengths/distances
-    // l.size += 1;
-    n.group_data = l;
-}
+    for (i in lm) { links.push(lm[i]); }
 
-// determine links
-for (k=0; k<data.links.length; ++k) {
-    var e = data.links[k],
-        u = e.source,
-        v = e.target,
-        t = e.type;
-        
-    var i = (u<v ? u+"|"+v : v+"|"+u),
-        l = lm[i] || (lm[i] = {source:u, target:v, type:t});
-}
-for (i in lm) { links.push(lm[i]); }
-
-return {nodes: nodes, links: links};
+    return {nodes: nodes, links: links};
 }
 function min_max(v, max_v, min_v){
-if (v>max_v) return max_v;
-else if (v<min_v) return min_v;
-else return v;
+    if (v>max_v) return max_v;
+    else if (v<min_v) return min_v;
+    else return v;
 }
 
 function boundary(x=0,y=0){
-if (x == 0){
-    return min_max(y, max_y, min_y);
-} else if(y == 0){
-    return min_max(x, max_x, min_x);
-} else{
-    return 0;
-}
+    if (x == 0){
+        return min_max(y, max_y, min_y);
+    } else if(y == 0){
+        return min_max(x, max_x, min_x);
+    } else{
+        return 0;
+    }
 }
 
 function convexHulls(nodes, d_offset) {
-var hulls = {};
+    var hulls = {};
 
-// create point sets
-for (var k=0; k<nodes.length; ++k) {
-    var n = nodes[k];
-    if (n.group == "na") continue;
-    var i = n.group,
-    offset = d_offset,
-    l = hulls[i] || (hulls[i] = []);
-    if(n.size == 0){
-    offset = d_offset*4;
+    // create point sets
+    for (var k=0; k<nodes.length; ++k) {
+        var n = nodes[k];
+        if (n.group == "na") continue;
+        var i = n.group,
+        offset = d_offset,
+        l = hulls[i] || (hulls[i] = []);
+        if(n.size == 0){
+        offset = d_offset*4;
+        }
+        l.push([n.x-offset, n.y-offset]);
+        l.push([n.x-offset, n.y+offset]);
+        l.push([n.x+offset, n.y-offset]);
+        l.push([n.x+offset, n.y+offset]);
     }
-    l.push([n.x-offset, n.y-offset]);
-    l.push([n.x-offset, n.y+offset]);
-    l.push([n.x+offset, n.y-offset]);
-    l.push([n.x+offset, n.y+offset]);
-}
 
-// create convex hulls
-var hullset = [];
-for (i in hulls) {
-    hullset.push({group: i, path: d3.geom.hull(hulls[i])});
-}
+    // create convex hulls
+    var hullset = [];
+    for (i in hulls) {
+        hullset.push({group: i, path: d3.geom.hull(hulls[i])});
+    }
 
-return hullset;
+    return hullset;
 }
 
 function drawCluster(d) {
-return curve(d.path); // 0.8
+    return curve(d.path); // 0.8
 }
 
 function id2node(id, nodes){
@@ -347,6 +345,7 @@ function init(data) {
                 .attr("y", function(d) { return d.y-8; });
     });
     }
+
 
 
 // $(() => {
