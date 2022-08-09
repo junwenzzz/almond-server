@@ -677,6 +677,7 @@ $(() => {
 
         net = network(data, net);
 
+        console.log(net.links);
         force = d3.layout.force()
             .nodes(net.nodes)
             .links(net.links)
