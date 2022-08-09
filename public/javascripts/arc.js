@@ -150,9 +150,9 @@ $(() => {
     }
     // --------------------------------------------------------
 
-    var body = d3.select("body");
-
-    var vis = body.append("svg")
+    // var body = d3.select("body");
+    // var vis = body.append("svg")
+    var vis = d3.select("#bubbleDiagram").append("svg")
     .attr("width", width)
     .attr("height", height);
 
