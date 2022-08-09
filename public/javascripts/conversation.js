@@ -506,8 +506,8 @@ $(() => {
             }
         });
     });
-
-    var width = 600,     // svg width
+    (function(){
+        var width = 600,     // svg width
         height = 800,     // svg height
         dr = 10,      // default point radius
         off = 20,    // cluster hull offset
@@ -679,29 +679,29 @@ $(() => {
 
     var bubble_flag = 1;
 
-    // function update(d){
-    // switch (bubble_flag){
-    //     case 1:
-    //     init(load_data(json1));
-    //     break;
-    //     case 2:
-    //     init(load_data(json2));
-    //     break;
-    //     case 3:
-    //     init(load_data(json3));
-    //     break;
-    //     case 4:
-    //     init(load_data(json4));
-    //     break;
-    //     case 5:
-    //     init(load_data(json5));
-    //     break;
-    //     default:
-    //     return;
-    // }
-    // bubble_flag = bubble_flag + 1;
-    // console.log(bubble_flag);
-    // }
+    function update(){
+    switch (bubble_flag){
+        case 1:
+        init(load_data(json1));
+        break;
+        case 2:
+        init(load_data(json2));
+        break;
+        case 3:
+        init(load_data(json3));
+        break;
+        case 4:
+        init(load_data(json4));
+        break;
+        case 5:
+        init(load_data(json5));
+        break;
+        default:
+        return;
+    }
+    bubble_flag = bubble_flag + 1;
+    console.log(bubble_flag);
+    }
 
     function init(data) {
         if (force) force.stop();
@@ -882,4 +882,5 @@ $(() => {
                     .attr("y", function(d) { return d.y-8; });
         });
     }
+    })()
 });
